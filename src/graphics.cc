@@ -28,11 +28,33 @@ Graphics::Graphics() {
 }
 
 Graphics::~Graphics() {
+    for (SpriteMap::iterator iter = sprite_sheets_.begin();
+        iter != sprite_sheets_.end();
+        ++iter) {
+        SDL_FreeSurface(iter->second);
+    }
+
     SDL_FreeSurface(screen_);
 }
 
+Graphics::SurfaceID Graphics::loadImage(const std::string& file_path) {
+    // if we have no loaded in the spritesheet
+    if (sprite_sheets_.count(file_path) == 0)
+        // load it in now
+        sprite_sheets_[file_path] = SDL_LoadBMP(file_path.c_str());
+
+    if (sprite_sheets_[file_path] == NULL) {
+            // Could not load the image for whatever reason, print to stderr.
+            fprintf(stderr, "ERROR: Could not find image: %s\n", file_path.c_str());
+            // Don't try to continue if we couldn't load an image, just exit.
+            exit(EXIT_FAILURE);
+    }
+
+    return sprite_sheets_[file_path];
+}
+
 void Graphics::blitSurface(
-        SDL_Surface* source,
+        SurfaceID source,
         SDL_Rect* source_rectangle,
         SDL_Rect* destination_rectangle) {
 

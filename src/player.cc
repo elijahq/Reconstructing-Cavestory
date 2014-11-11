@@ -11,7 +11,7 @@ namespace {
 
 }
 
-Player::Player(int x, int y) :
+Player::Player(Graphics& graphics, int x, int y) :
         x_(x),
         y_(y),
         velocity_x_ (0.0f),
@@ -20,7 +20,11 @@ Player::Player(int x, int y) :
 
     sprite_.reset(
         new AnimatedSprite(
-            "content/MyChar.bmp", 0, 0, Game::kTileSize, Game::kTileSize, 15, 3
+            graphics,
+            "content/MyChar.bmp",
+            0, 0,   // source_x and source_y
+            Game::kTileSize, Game::kTileSize, // width and height
+            15, 3   // fps and num_frames
         )
     );
 }

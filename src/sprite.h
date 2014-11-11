@@ -9,11 +9,11 @@ struct SDL_Surface;
 
 struct Sprite {
     Sprite(
+        Graphics& graphics,
         const std::string& file_path,
         int source_x, int source_y,
         int width, int height
     );
-    virtual ~Sprite();
 
     virtual void update(int /*elapsed_time_in_ms*/) {}
     void draw(Graphics& graphics, int x, int y);
