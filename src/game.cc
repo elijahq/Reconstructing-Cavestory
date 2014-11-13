@@ -5,7 +5,7 @@
 #include "input.h"
 
 namespace {
-    const int kFps = 60;
+const int kFps = 60;
 }
 
 //static
@@ -63,6 +63,20 @@ void Game::eventLoop() {
         // otherwise stop moving
         else
             player_->stopMoving();
+
+        // if both up and right keys are being pressed, look 'horizontally'
+        if (input.isKeyHeld(SDLK_UP) && input.isKeyHeld(SDLK_DOWN))
+            player_->lookHorizontal();
+        // else if up key is being pressed, look up
+        else if (input.isKeyHeld(SDLK_UP))
+            player_->lookUp();
+        // else if down key is being pressed, look down
+        else if (input.isKeyHeld(SDLK_DOWN))
+            player_->lookDown();
+        // otherwise look 'horizontally'
+        else
+            player_->lookHorizontal();
+
 
         // Player Jump
         if (input.wasKeyPressed(SDLK_z))

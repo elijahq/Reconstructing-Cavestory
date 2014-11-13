@@ -2,19 +2,19 @@
 #include "graphics.h"
 
 namespace {
-    // 640 x 480
-    const int kScreenWidth = 640;
-    const int kScreenHeight = 480;
+// 640 x 480
+const int kScreenWidth = 640;
+const int kScreenHeight = 480;
 
-    // 1680 x 1050
-    //const int kScreenWidth = 1680;
-    //const int kScreenHeight = 1050;
+// 1680 x 1050
+//const int kScreenWidth = 1680;
+//const int kScreenHeight = 1050;
 
-    // 1920 x 1080
-    //const int kScreenWidth = 1920;
-    //const int kScreenHeight = 1080;
+// 1920 x 1080
+//const int kScreenWidth = 1920;
+//const int kScreenHeight = 1080;
 
-    const int kBitsPerPixel = 32;
+const int kBitsPerPixel = 32;
 }
 
 Graphics::Graphics() {
@@ -22,7 +22,7 @@ Graphics::Graphics() {
         kScreenWidth,
         kScreenHeight,
         kBitsPerPixel,
-        SDL_FULLSCREEN
+        0
     );
     SDL_ShowCursor(SDL_DISABLE);
 }
